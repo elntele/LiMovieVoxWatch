@@ -17,7 +17,7 @@ public interface DataService {
     @GET("3/search/movie?api_key=ceec733b41c12cb94975bcbdcdcba3aa&query=SELECT%20%2A%20&page=")
     Call <ListMovies> recuperarMovies(@Query("page")  String page);
 
-    Call<>
+    //Call<>
 
 
 

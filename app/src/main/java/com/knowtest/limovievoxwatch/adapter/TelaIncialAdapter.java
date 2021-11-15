@@ -13,12 +13,15 @@ import com.knowtest.limovievoxwatch.R;
 import com.knowtest.limovievoxwatch.activity.MainActivity;
 import com.knowtest.limovievoxwatch.model.ListMovies;
 import com.knowtest.limovievoxwatch.model.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class TelaIncialAdapter extends RecyclerView.Adapter<TelaIncialAdapter.TelaInicialMyViewHolder> {
 
     private List <Movie> movies;
+    private final String baseUrl="https://image.tmdb.org/t/p/";
+    private  final String tamanho ="w45";
 
     public TelaIncialAdapter(List<Movie> movies) {
        this.movies=movies;
@@ -47,7 +50,11 @@ public class TelaIncialAdapter extends RecyclerView.Adapter<TelaIncialAdapter.Te
         substring= substring+"..."+"\n"+mess ;
         holder.overView.setText(substring);
         holder.name.setText(movies.get(position).getOriginal_title());
-        holder.image.setImageResource(R.drawable.icone);
+
+        Picasso.get().load(baseUrl+tamanho+movies.get(position).getPoster_path()).
+                placeholder(R.drawable.icone).error(R.drawable.icone).into(holder.image);
+        holder.id.setText(movies.get(position).getId());
+
 
     }
 
@@ -61,6 +68,7 @@ public class TelaIncialAdapter extends RecyclerView.Adapter<TelaIncialAdapter.Te
         private TextView name;
         private TextView overView;
         private ImageView image;
+        private TextView id;
 
         public TelaInicialMyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +76,7 @@ public class TelaIncialAdapter extends RecyclerView.Adapter<TelaIncialAdapter.Te
             name=itemView.findViewById(R.id.card_title);
             overView=itemView.findViewById(R.id.card_text);
             image=itemView.findViewById(R.id.card_image);
+            id = itemView.findViewById(R.id.id);
 
         }
     }
