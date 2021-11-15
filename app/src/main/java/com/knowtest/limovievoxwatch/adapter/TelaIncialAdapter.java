@@ -53,7 +53,6 @@ public class TelaIncialAdapter extends RecyclerView.Adapter<TelaIncialAdapter.Te
 
         Picasso.get().load(baseUrl+tamanho+movies.get(position).getPoster_path()).
                 placeholder(R.drawable.icone).error(R.drawable.icone).into(holder.image);
-        holder.id.setText(movies.get(position).getId());
 
 
     }
@@ -76,7 +75,6 @@ public class TelaIncialAdapter extends RecyclerView.Adapter<TelaIncialAdapter.Te
             name=itemView.findViewById(R.id.card_title);
             overView=itemView.findViewById(R.id.card_text);
             image=itemView.findViewById(R.id.card_image);
-            id = itemView.findViewById(R.id.id);
 
         }
     }

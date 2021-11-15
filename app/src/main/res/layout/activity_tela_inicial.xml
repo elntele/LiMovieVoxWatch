@@ -26,11 +26,13 @@
                 app:srcCompat="@drawable/titulo" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/exit_button_tela_principal"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+                android:clickable="true"
+                android:onClick="sairTelaInicial"
+                app:srcCompat="@drawable/ic_exit_to_app_black_24dp" />
 
         </LinearLayout>
 
@@ -43,7 +45,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recicler_lista_file"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 

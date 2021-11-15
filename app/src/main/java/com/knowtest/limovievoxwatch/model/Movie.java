@@ -3,7 +3,9 @@ package com.knowtest.limovievoxwatch.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Movie implements Parcelable {
+import java.io.Serializable;
+
+public class Movie implements Parcelable, Serializable {
     private String original_title;
     private String poster_path;
     private String homepage;
