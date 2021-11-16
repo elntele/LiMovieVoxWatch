@@ -15,16 +15,21 @@ import com.knowtest.limovievoxwatch.model.ListMovies;
 import com.knowtest.limovievoxwatch.model.Movie;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TelaIncialAdapter extends RecyclerView.Adapter<TelaIncialAdapter.TelaInicialMyViewHolder> {
 
     private List <Movie> movies;
+    private List <Movie> moviesCopy = new ArrayList<>();
     private final String baseUrl="https://image.tmdb.org/t/p/";
     private  final String tamanho ="w45";
 
+
     public TelaIncialAdapter(List<Movie> movies) {
        this.movies=movies;
+       this.moviesCopy.addAll(movies);
+
     }
 
     @NonNull
@@ -62,6 +67,23 @@ public class TelaIncialAdapter extends RecyclerView.Adapter<TelaIncialAdapter.Te
 
         return this.movies.size();
     }
+
+    public void filter(String text) {
+        movies.clear();
+        if(text.isEmpty()){
+            movies.addAll(moviesCopy);
+        } else{
+            text = text.toLowerCase();
+            for(Movie m: moviesCopy){
+                if(m.getOriginal_title().toLowerCase().contains(text) ){
+                    movies.add(m);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+
 
     public class TelaInicialMyViewHolder extends   RecyclerView.ViewHolder{
         private TextView name;

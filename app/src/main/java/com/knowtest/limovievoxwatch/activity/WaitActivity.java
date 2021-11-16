@@ -15,7 +15,7 @@ public class WaitActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wait);
-
+        this.getSupportActionBar().hide();
         Timer timer = new Timer();
         MyTimerTask myTask = new MyTimerTask();
         timer.schedule(myTask, 10000, 20000);
@@ -23,8 +23,6 @@ public class WaitActivity extends AppCompatActivity {
 
 
     class MyTimerTask extends TimerTask {
-
-
         public void run() {
             finish();
 
