@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         DataService service = retrofit.create(DataService.class);
        if (!go) {
-           for (int i = 1; i <= 1; i++) {
+           for (int i = 1; i <= 4; i++) {
                index+=1;
 
                Call<ListMovies> call = service.recuperarMovies(Integer.toString(i));
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
                                         listMovies = response.body();
                                         movies.addAll(listMovies.getMovieList());
-                                        if (index == 1)
+                                        if (index == 4)
                                             go = true;
                                     }
                                 }

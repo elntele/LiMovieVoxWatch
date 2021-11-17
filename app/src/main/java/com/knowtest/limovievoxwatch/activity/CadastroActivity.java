@@ -145,4 +145,14 @@ public class CadastroActivity extends AppCompatActivity {
 
     }
 
+
+    public void clearCamps(View view) {
+
+              name.getText().clear();
+               email.getText().clear();
+               password.getText().clear();
+
+
+        }
+
 }

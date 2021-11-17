@@ -5,12 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.knowtest.limovievoxwatch.R;
+import com.knowtest.limovievoxwatch.helper.ClearCache;
+import com.knowtest.limovievoxwatch.helper.FireBaseConfiguration;
 import com.knowtest.limovievoxwatch.model.Movie;
 import com.squareup.picasso.Picasso;
 
@@ -78,5 +82,35 @@ public class TelaDeApresentacaoActivity extends AppCompatActivity {
             alertDialog.show();
 
     }
+
+
+    public void logOutTelaApresentacao(View v) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Fazer logou? precisará informar usuário e senha quando entrar.");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                FirebaseAuth auth = FireBaseConfiguration.getFirebaseAuth();
+                auth.signOut();
+                if (auth.getCurrentUser() == null){
+                    Log.d("usuario", "jorge candeias do nascimento");
+                }
+                ClearCache.deleteCache(getApplicationContext());
+                finish();
+                finishAffinity();
+                System.exit(0);
+            }
+        });
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 
 }
