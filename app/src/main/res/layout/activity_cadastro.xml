@@ -6,30 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".activity.CadastroActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/nome_cadastro"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/titulo" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/voltar_cadastro"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="backButtonTelaCadastro"
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/titulo" />
+
+        <ImageView
+            android:id="@+id/sair_cadastro"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="sairTelaCadastro"
+            app:srcCompat="@drawable/ic_exit_to_app_black_24dp" />
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/nome_cadastro"
         android:layout_width="0dp"
         android:layout_height="36dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="55dp"
         android:background="@drawable/backshape"
         android:ems="10"
         android:hint="@string/gigNa"
         android:inputType="textPersonName"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -42,11 +71,14 @@
         android:id="@+id/email_cadastro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="55dp"
         android:background="@drawable/backshape"
         android:ems="10"
         android:hint="@string/gigEmailCad"
         android:inputType="textEmailAddress"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,11 +88,14 @@
         android:id="@+id/senha_cadastro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="55dp"
         android:background="@drawable/backshape"
         android:ems="10"
         android:hint="@string/gigSenLog"
         android:inputType="textPassword"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_cadastro" />
@@ -68,7 +103,7 @@
     <Button
         android:id="@+id/botao_cadastrar"
         android:layout_width="180dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
@@ -79,9 +114,9 @@
         app:layout_constraintTop_toBottomOf="@+id/senha_cadastro" />
 
     <Button
-        android:id="@+id/botao_entrar"
+        android:id="@+id/botao_limpar"
         android:layout_width="180dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"

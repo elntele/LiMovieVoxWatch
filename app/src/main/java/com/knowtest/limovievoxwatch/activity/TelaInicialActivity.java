@@ -1,22 +1,30 @@
 package com.knowtest.limovievoxwatch.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.SearchView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.knowtest.limovievoxwatch.R;
 import com.knowtest.limovievoxwatch.adapter.TelaIncialAdapter;
+import com.knowtest.limovievoxwatch.helper.FireBaseConfiguration;
 import com.knowtest.limovievoxwatch.helper.RecyclerItemClickListener;
 import com.knowtest.limovievoxwatch.model.Movie;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +35,7 @@ public class TelaInicialActivity extends AppCompatActivity {
     private TelaIncialAdapter adapter;
     private List <Movie>  movies= new ArrayList();
     private SearchView searchView;
+    private  FirebaseAuth auth;
 
 
     @Override
@@ -110,6 +119,61 @@ public class TelaInicialActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
+
+
+    public void logOutTelaInicial(View v) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Fazer logou? precisará informar usuário e senha quando entrar.");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                FirebaseAuth auth = FireBaseConfiguration.getFirebaseAuth();
+                auth.signOut();
+                if (auth.getCurrentUser() == null){
+                    Log.d("usuario", "jorge candeias do nascimento");
+                }
+                deleteCache(getApplicationContext());
+                finish();
+                finishAffinity();
+                System.exit(0);
+            }
+        });
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        } catch (Exception e) { e.printStackTrace();}
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        } else if(dir!= null && dir.isFile()) {
+            return dir.delete();
+        } else {
+            return false;
+        }
+    }
+
 
 
 

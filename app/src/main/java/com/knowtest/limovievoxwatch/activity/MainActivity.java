@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.knowtest.limovievoxwatch.R;
+import com.knowtest.limovievoxwatch.helper.FireBaseConfiguration;
 import com.knowtest.limovievoxwatch.interfaceRest.DataService;
 import com.knowtest.limovievoxwatch.model.ListMovies;
 import com.knowtest.limovievoxwatch.model.Movie;
@@ -88,8 +90,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void roteamento(){
-
-        if (go){
+        FirebaseAuth firebaseAuth= FireBaseConfiguration.getFirebaseAuth();
+        if (firebaseAuth.getCurrentUser() == null){
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+        }else if (go){
             Intent intent = new Intent(getApplicationContext(), TelaInicialActivity.class);
             intent.putParcelableArrayListExtra("array", (ArrayList<Movie>) movies);
             startActivity(intent);
